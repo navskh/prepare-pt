@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <style>
+    :root {
+      --primary: #003876;
+      --accent: #1a73e8;
+      --bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text: #333;
+      --text-light: #666;
+      --border: #e0e0e0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+    .header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header a { color: white; text-decoration: none; }
+    .header h1 { font-size: 1.1rem; font-weight: 600; }
+    .header h1 a:hover { opacity: 0.9; }
+    .nav-home {
+      font-size: 0.85rem;
+      background: rgba(255,255,255,0.15);
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .nav-home:hover { background: rgba(255,255,255,0.25); }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    .content h1 { font-size: 1.6rem; color: var(--primary); margin-bottom: 1.5rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; }
+    .content h2 { font-size: 1.3rem; color: var(--primary); margin: 2rem 0 1rem; }
+    .content h3 { font-size: 1.1rem; margin: 1.5rem 0 0.8rem; }
+    .content p { margin-bottom: 0.8rem; }
+    .content ul, .content ol { margin: 0.5rem 0 1rem 1.5rem; }
+    .content li { margin-bottom: 0.3rem; }
+    .content strong { color: var(--primary); }
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .content th {
+      background: var(--primary);
+      color: white;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      font-weight: 500;
+    }
+    .content td {
+      padding: 0.6rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .content tr:nth-child(even) { background: #f4f6f8; }
+    .content hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .page-nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .page-nav a:hover { background: var(--accent); color: white; }
+    .page-nav .prev::before { content: "\2190 "; }
+    .page-nav .next::after { content: " \2192"; }
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-light);
+      font-size: 0.8rem;
+    }
+    @media (max-width: 600px) {
+      .header h1 { font-size: 0.95rem; }
+      .container { padding: 1rem; }
+      .content table { font-size: 0.8rem; }
+      .content th, .content td { padding: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-inner">
+      <h1><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
+      {% unless page.url == "/" %}
+      <a class="nav-home" href="{{ site.baseurl }}/">목차로</a>
+      {% endunless %}
+    </div>
+  </div>
+  <div class="container">
+    <div class="content">
+      {{ content }}
+    </div>
+    {% if page.prev_page or page.next_page %}
+    <div class="page-nav">
+      <div>{% if page.prev_page %}<a class="prev" href="{{ site.baseurl }}{{ page.prev_page.url }}">{{ page.prev_page.title }}</a>{% endif %}</div>
+      <div>{% if page.next_page %}<a class="next" href="{{ site.baseurl }}{{ page.next_page.url }}">{{ page.next_page.title }}</a>{% endif %}</div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="footer">서울대학교 정보화본부 전산직 PT 면접 준비 자료</div>
+</body>
+</html>
