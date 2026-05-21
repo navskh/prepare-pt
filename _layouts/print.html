@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <style>
+    :root {
+      --primary: #003876;
+      --accent: #1a73e8;
+      --text: #333;
+      --text-light: #666;
+      --border: #e0e0e0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.7;
+    }
+    .header-bar {
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-bar a { color: white; text-decoration: none; }
+    .header-bar h1 { font-size: 1rem; font-weight: 600; }
+    .header-bar .actions { display: flex; gap: 0.5rem; align-items: center; }
+    .header-bar .btn {
+      font-size: 0.8rem;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: none;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .header-bar .btn:hover { background: rgba(255,255,255,0.3); }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    .content h1 { font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; }
+    .content h2 { font-size: 1.2rem; color: var(--primary); margin: 1.5rem 0 0.8rem; }
+    .content h3 { font-size: 1rem; margin: 1.2rem 0 0.6rem; }
+    .content h4 { font-size: 0.95rem; margin: 1rem 0 0.5rem; }
+    .content p { margin-bottom: 0.6rem; font-size: 0.9rem; }
+    .content ul, .content ol { margin: 0.4rem 0 0.8rem 1.5rem; font-size: 0.9rem; }
+    .content li { margin-bottom: 0.2rem; }
+    .content strong { color: var(--primary); }
+    .content blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.5rem 1rem;
+      margin: 0.8rem 0;
+      background: #f0f4ff;
+      font-size: 0.9rem;
+    }
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.8rem 0;
+      font-size: 0.8rem;
+    }
+    .content th {
+      background: var(--primary);
+      color: white;
+      padding: 0.4rem 0.6rem;
+      text-align: left;
+      font-weight: 500;
+    }
+    .content td {
+      padding: 0.4rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .content tr:nth-child(even) { background: #f4f6f8; }
+    .content hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+    /* Page break between topics */
+    .page-break { page-break-before: always; }
+
+    /* Print styles */
+    @media print {
+      .header-bar { display: none; }
+      body { font-size: 10pt; line-height: 1.5; }
+      .container { max-width: 100%; padding: 0; }
+      .content h1 { font-size: 14pt; }
+      .content h2 { font-size: 12pt; page-break-after: avoid; }
+      .content h3 { font-size: 11pt; page-break-after: avoid; }
+      .content table { font-size: 8pt; }
+      .content th, .content td { padding: 2pt 4pt; }
+      .content blockquote { background: none; border-left: 2px solid #999; }
+      .page-break { page-break-before: always; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 1rem; }
+      .content table { font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <h1><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
+    <div class="actions">
+      <a class="btn" href="{{ site.baseurl }}/">목차로</a>
+      <button class="btn" onclick="window.print()">인쇄하기</button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="content">
+      {{ content }}
+    </div>
+  </div>
+</body>
+</html>
